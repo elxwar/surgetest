@@ -196,13 +196,25 @@ module.exports = function (grunt) {
       },
       during_watch: {
         browsers: ['PhantomJS']
-      },
+      }
+    },
+    surge: {
+      'surgetest': {
+        options: {
+          project: 'dist/',
+          domain: 'erics_test.surge.sh'
+        }
+      }
     }
   });
+
+  grunt.loadNpmTasks('grunt-surge');
+
 
   grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngAnnotate','uglify','copy','htmlmin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('deploy', ['build','surge']);
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
