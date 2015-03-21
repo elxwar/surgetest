@@ -1,0 +1,12 @@
+angular.module('home', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+
+angular.module('home').config(function($stateProvider) {
+
+    $stateProvider.state('home', {
+        url: '/home',
+        templateUrl: 'home/partial/home/home.html'
+    });
+    /* Add New States Above */
+
+});
+
